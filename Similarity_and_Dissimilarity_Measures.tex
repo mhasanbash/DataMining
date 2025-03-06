@@ -1,0 +1,366 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage{float}
+\usepackage{hyperref}
+
+
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        {\Huge\textbf{Similarity and Dissimilarity}}\\[0.5cm]
+        {\Large  \textbf{M. H. Bashogh}}\\[2cm]
+        {\large March 2025}\\[2cm]
+    \end{center}
+\end{titlepage}
+
+\section{Types of Data}
+
+In data mining, data attributes can be categorized into two main types:
+
+\subsection{Categorical (Qualitative) Data}
+\begin{itemize}
+    \item \textbf{Nominal:} Categorical data with no intrinsic ordering, e.g., colors (red, blue, green).
+    \item \textbf{Ordinal:} Categorical data with a meaningful order but no fixed interval, e.g., ratings (low, medium, high).
+\end{itemize}
+
+\subsection{Numeric (Quantitative) Data}
+Numeric data can be further divided into:
+\begin{itemize}
+    \item \textbf{Interval:} Numerical data with equal intervals but no true zero, e.g., temperature in Celsius.
+    \item \textbf{Ratio:} Numerical data with a true zero point, e.g., weight, height, income.
+\end{itemize}
+
+interval and ratio data can be classified as:
+\begin{itemize}
+    \item \textbf{Discrete:} Has a finite or countably infinite set of values, often represented as integer variables. Examples include zip codes, counts, and word occurrences in documents. A special case is \textbf{binary attributes} (e.g., yes/no, 0/1).
+    \item \textbf{Continuous:} Has real numbers as attribute values, typically represented as floating-point variables. Examples include temperature, height, and weight. Real values can only be measured and represented using a finite number of digits.
+\end{itemize}
+
+\section{Types of Data Set}
+data sets can be categorized into different types based on their structure and characteristics:
+
+\begin{itemize}
+    \item \textbf{Record (Tabular) Data:} Structured data stored in tabular form.
+    \begin{itemize}
+        \item \textbf{Data Matrix:} A matrix where rows represent instances and columns represent attributes.
+        \item \textbf{Document Data:} Text-based data represented as term-frequency matrices.
+        \item \textbf{Transaction Data:} Data representing transactions, such as market basket analysis.
+    \end{itemize}
+    \item \textbf{Graph Data:} Data represented as nodes and edges, such as:
+    \begin{itemize}
+        \item \textbf{World Wide Web:} Hyperlinked web pages.
+        \item \textbf{Molecular Structures:} Chemical compounds represented as graphs.
+    \end{itemize}
+    \item \textbf{Ordered Data:} Data with an inherent order, such as:
+    \begin{itemize}
+        \item \textbf{Spatial Data:} Data with geographic or spatial relationships.
+        \item \textbf{Temporal Data:} Data that changes over time, such as stock prices.
+        \item \textbf{Sequential Data:} Ordered sequences, such as time-series data.
+        \item \textbf{Genetic Sequence Data:} Biological sequences such as DNA or protein structures.
+    \end{itemize}
+
+    \item \textbf{Spatial/Image Data:} Data that includes spatial and image-based representations.
+	 \begin{itemize}
+	        \item \textbf{Maps:} Geographic information represented in layers.
+	        \item \textbf{Images:} Photographic or graphical data used in analysis.
+	  \end{itemize}
+\end{itemize}
+
+\section{Central tendency, variation and spread}
+\subsection{Measuring the Central Tendency}
+Central tendency measures describe the center or typical value of a dataset. The key measures include:
+
+\begin{itemize}
+    \item \textbf{Mean:} The arithmetic average of all data points, given by:
+    \[ \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i \]
+    \item \textbf{Weighted Arithmetic Mean:} A mean where each data point is assigned a weight reflecting its importance, given by:
+    \[ \bar{x}_w = \frac{\sum_{i=1}^{n} w_i x_i}{\sum_{i=1}^{n} w_i} \]
+    \item \textbf{Trimmed Mean:} The mean calculated after removing a fixed percentage of the smallest and largest values.
+    \item \textbf{Median:} The middle value in a sorted dataset, estimated by interpolation for grouped data:
+    \[ \text{median} = L_1 + \left( \frac{n/2 - ( \sum freq)_l}{freq_{median}} \right) \text{width} \]
+    \[ L_1 \text{: low inteval limit.}  \]
+    \[ n \text{: Total number of observations.}  \]
+    \[ {freq_{median}}\text{: Frequency of the median class..}  \]
+    \[ (\sum freq)_l \text{: Cumulative frequency before the median class.}  \]
+    \[ width \text{: difference between upper and lower boundaries of the class interval.}  \]
+    \item \textbf{Mode:} The most frequently occurring value in a dataset, estimated using the empirical formula:
+    \[ \text{mean} - \text{mode} = 3 \times (\text{mean} - \text{median}) \]
+    \[ \text{Mode} = 3 \text{median} - 2 \text{mean} \]
+\end{itemize}
+
+\subsection{Measuring the Dispersion of Data}
+
+Dispersion measures the spread of data points in a dataset. The following metrics are commonly used to quantify dispersion:
+
+\subsubsection{Variance}
+Variance (\(\sigma^2\)) measures the average squared deviation from the mean:
+\begin{equation}
+\sigma^2 = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2
+\end{equation}
+where \( x_i \) are the data points, \( \mu \) is the mean, and \( N \) is the total number of observations.
+
+\subsubsection{Sample Variance}
+When the mean is unknown, the sample variance (\(s^2\)) is computed as:
+
+\begin{equation}
+s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2 
+    = \frac{1}{n-1} \left[ \sum_{i=1}^{n} x_i^2 - \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right)^2 \right]
+\end{equation}
+
+where:
+\begin{itemize}
+    \item \( x_i \) are the data points,
+    \item \( \bar{x} \) is the sample mean,
+    \item \( n \) is the sample size.
+\end{itemize}
+
+
+\subsubsection{Standard Deviation}
+Standard deviation is the square root of variance:
+\begin{equation}
+\sigma = \sqrt{\sigma^2}, \quad s = \sqrt{s^2}
+\end{equation}
+It provides a measure of dispersion in the same units as the original data.
+
+\subsubsection{Quartiles}
+Quartiles divide a dataset into four equal parts:
+\begin{itemize}
+    \item \( Q_1 \) (First Quartile): 25\% of data falls below this value.
+    \item \( Q_2 \) (Median): 50\% of data falls below this value.
+    \item \( Q_3 \) (Third Quartile): 75\% of data falls below this value.
+\end{itemize}
+
+\subsubsection{Outliers}
+Outliers are data points that lie significantly outside the typical range. A common rule to identify outliers is:
+\begin{equation}
+\text{Lower Bound} = Q_1 - 1.5 \times IQR, \quad \text{Upper Bound} = Q_3 + 1.5 \times IQR
+\end{equation}
+where the Interquartile Range (IQR) is defined as:
+\begin{equation}
+IQR = Q_3 - Q_1
+\end{equation}
+Any data point outside these bounds is considered an outlier.
+
+\subsubsection{Boxplots}
+A boxplot is a graphical representation of data dispersion, displaying:
+\begin{itemize}
+    \item Minimum (excluding outliers)
+    \item \( Q_1 \) (First Quartile)
+    \item Median (\( Q_2 \))
+    \item \( Q_3 \) (Third Quartile)
+    \item Maximum (excluding outliers)
+    \item Outliers as separate points
+\end{itemize}
+
+\section{Similarity and Dissimilarity Measures}
+
+Similarity and dissimilarity measures are fundamental in data analysis, clustering, and machine learning. They quantify the relationship between data objects.
+
+\subsection{Similarity Measure}
+\begin{itemize}
+    \item Numerical measure of how alike two data objects are.
+    \item Is higher when objects are more alike.
+    \item Often falls in the range \([0,1]\).
+\end{itemize}
+
+\subsection{Dissimilarity Measure}
+\begin{itemize}
+    \item Numerical measure of how different two data objects are.
+    \item Lower when objects are more alike.
+    \item Minimum dissimilarity is often 0.
+    \item Upper limit varies depending on the measure.
+\end{itemize}
+
+\subsection{Proximity}
+Proximity refers to either similarity or dissimilarity, depending on the context.
+
+
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|c|p{6cm}|p{6cm}|}
+        \hline
+        \textbf{Attribute Type} & \textbf{Dissimilarity} & \textbf{Similarity} \\
+        \hline
+        Nominal & 
+        $ d = \begin{cases} 
+            0 & \text{if } x = y \\ 
+            1 & \text{if } x \neq y 
+        \end{cases} $ & 
+        $ s = \begin{cases} 
+            1 & \text{if } x = y \\ 
+            0 & \text{if } x \neq y 
+        \end{cases} $ \\
+        \hline
+        Ordinal & 
+        $ d = \frac{|x - y|}{(n - 1)} $ \newline
+        (values mapped to integers 0 to $n-1$, where $n$ is the number of values) & 
+        $ s = 1 - d $ \\
+        \hline
+        Interval or Ratio & 
+        $ d = |x - y| $ & 
+        $ s = -d, \quad s = \frac{1}{1 + d}, \quad s = e^{-d}, $ \newline
+        $ s = 1 - \frac{d - min_d}{max_d - min_d} $ \\
+        \hline
+    \end{tabular}
+    \caption{Dissimilarity and Similarity Measures for Different Attribute Types}
+    \label{tab:similarity_dissimilarity}
+\end{table}
+
+\subsection{Distance Measures}
+
+Distance measures quantify the dissimilarity between data points in a given space. Some commonly used distance measures include:
+
+\subsubsection{Euclidean Distance}
+The Euclidean distance between two points \( x = (x_1, x_2, ..., x_n) \) and \( y = (y_1, y_2, ..., y_n) \) in an \( n \)-dimensional space is given by:
+\begin{equation}
+d_E(x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}
+\end{equation}
+This is the most commonly used distance metric in geometric space.
+
+\subsubsection{Minkowski Distance}
+Minkowski distance generalizes Euclidean and Manhattan distances and is defined as:
+\begin{equation}
+d_M(x, y) = \left( \sum_{i=1}^{n} |x_i - y_i|^p \right)^{\frac{1}{p}}
+\end{equation}
+Special cases:
+\begin{itemize}
+    \item \( p = 1 \) results in the Manhattan Distance.
+    \item \( p = 2 \) results in the Euclidean Distance.
+\end{itemize}
+
+\subsubsection{Mahalanobis Distance}
+Mahalanobis distance accounts for correlations between variables and is defined as:
+\begin{equation}
+d_{Mah}(x, y) = \sqrt{(x - y)^T {\sum}^{-1} (x - y)}
+\end{equation}
+where \( \sum \) is the covariance matrix of the dataset. It is useful in identifying outliers and handling correlated features.
+
+\subsection{Similarity Between Binary Vectors}
+
+Binary vectors represent objects using binary values (0 or 1), where similarity measures determine how alike two binary vectors are. Common measures include:
+
+\subsubsection{Simple Matching Coefficient (SMC)}
+The Simple Matching Coefficient (SMC) measures the proportion of matching attributes between two binary vectors:
+
+\begin{equation}
+SMC = \frac{f_{00} + f_{11}}{f_{00} + f_{01} + f_{10} + f_{11}}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item \( f_{11} \) = Number of attributes where both vectors have 1s.
+    \item \( f_{00} \) = Number of attributes where both vectors have 0s.
+    \item \( f_{10} \) = Number of attributes where the first vector is 1 and the second is 0.
+    \item \( f_{01} \) = Number of attributes where the first vector is 0 and the second is 1.
+\end{itemize}
+
+\subsubsection{Jaccard Similarity}
+The Jaccard similarity coefficient measures the proportion of shared attributes where at least one of the vectors has a 1:
+
+\begin{equation}
+J = \frac{f_{11}}{f_{11} + f_{10} + f_{01}}
+\end{equation}
+
+This measure ignores cases where both values are 0.
+
+\subsubsection{Cosine Similarity}
+Cosine similarity measures the cosine of the angle between two binary vectors:
+
+\begin{equation}
+s_{\cos}(x, y) = \frac{x \cdot y}{\|x\| \|y\|}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item \( x \cdot y \) is the inner product of the two binary vectors.
+    \item \( \|x\| \) and \( \|y\| \) are the magnitudes (L2 norm) of the vectors.
+\end{itemize}
+
+These similarity measures are widely used in text analysis, clustering, and classification tasks involving binary data.
+
+
+\section{Correlation Measures the Linear Relationship Between Objects}
+
+Correlation quantifies the strength and direction of a linear relationship between two variables. It is computed using the formula:
+
+\begin{equation}
+\text{corr}(\mathbf{x}, \mathbf{y}) = \frac{\text{covariance}(\mathbf{x}, \mathbf{y})}{\text{standard\_deviation}(\mathbf{x}) \times \text{standard\_deviation}(\mathbf{y})} = \frac{s_{xy}}{s_x s_y}
+\end{equation}
+
+where we use the following standard statistical notation and definitions:
+
+\begin{equation}
+\text{covariance}(\mathbf{x}, \mathbf{y}) = s_{xy} = \frac{1}{n-1} \sum_{k=1}^{n} (x_k - \overline{x}) (y_k - \overline{y})
+\end{equation}
+
+\begin{equation}
+\text{standard\_deviation}(\mathbf{x}) = s_x = \sqrt{\frac{1}{n-1} \sum_{k=1}^{n} (x_k - \overline{x})^2}
+\end{equation}
+
+\begin{equation}
+\text{standard\_deviation}(\mathbf{y}) = s_y = \sqrt{\frac{1}{n-1} \sum_{k=1}^{n} (y_k - \overline{y})^2}
+\end{equation}
+
+The mean values of \( x \) and \( y \) are given by:
+
+\begin{equation}
+\overline{x} = \frac{1}{n} \sum_{k=1}^{n} x_k, \quad \overline{y} = \frac{1}{n} \sum_{k=1}^{n} y_k
+\end{equation}
+
+The Pearson correlation coefficient is given by:
+
+\begin{equation}
+\rho_{X,Y} = \text{corr}(X, Y) = \frac{\text{cov}(X, Y)}{\sigma_X \sigma_Y} = \frac{\mathbb{E}[(X - \mu_X)(Y - \mu_Y)]}{\sigma_X \sigma_Y}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item \( \mathbb{E}[(X - \mu_X)(Y - \mu_Y)] \) is the expected value of the product of deviations.
+    \item \( \sigma_X, \sigma_Y \) are the standard deviations of \( X \) and \( Y \).
+\end{itemize}
+
+This measure is widely used in statistics and data analysis to assess relationships between numerical variables.
+
+
+\section*{Correlation vs. Cosine vs. Euclidean Distance}
+
+
+\subsection*{Behavior under Transformations}
+
+\begin{itemize}
+  \item \textbf{Scaling (multiply all elements by a constant $c$):}
+  \begin{itemize}
+    \item Correlation: invariant
+    \item Cosine: invariant (if $c > 0$)
+    \item Euclidean Distance: \emph{changes} (multiplied by $|c|$)
+  \end{itemize}
+  \item \textbf{Translation (add a constant $a$ to all elements):}
+  \begin{itemize}
+    \item Correlation: invariant
+    \item Cosine: \emph{changes}
+    \item Euclidean Distance: \emph{changes}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Choice of Proximity Measure}
+
+\begin{itemize}
+  \item \textbf{Correlation} is suitable when we care about the pattern or trend rather than absolute values (e.g., comparing temperature profiles).
+  \item \textbf{Cosine Similarity} is suitable for comparing the orientation of vectors (e.g., text documents with word counts).
+  \item \textbf{Euclidean Distance} is suitable when absolute numeric differences matter (e.g., physical distances, direct numeric comparisons).
+\end{itemize}
+
+\end{document}
