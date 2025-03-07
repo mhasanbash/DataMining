@@ -363,4 +363,33 @@ This measure is widely used in statistics and data analysis to assess relationsh
   \item \textbf{Euclidean Distance} is suitable when absolute numeric differences matter (e.g., physical distances, direct numeric comparisons).
 \end{itemize}
 
+\section{Entropy and Mutual Information}
+
+Entropy and mutual information are fundamental concepts in information theory, used to measure uncertainty and shared information between variables.
+
+\subsection{Entropy}
+Entropy quantifies the amount of uncertainty or randomness in a dataset. Given a set of observations of some attribute \(X\) with \(n\) different possible values, the entropy is defined as:
+
+\[ H(X) = - \sum_{i=1}^{n} \frac{m_i}{m} \log_2 \frac{m_i}{m} \]
+
+where \( m_i \) is the number of occurrences of the \( i \)th category and \( m \) is the total number of observations.
+
+\subsection{Mutual Information}
+Mutual information measures the amount of information one variable provides about another. It is defined as:
+
+\[ I(X,Y) = H(X) + H(Y) - H(X,Y) \]
+
+where \( H(X,Y) \) is the joint entropy of \( X \) and \( Y \), given by:
+
+\[ H(X,Y) = - \sum_{i} \sum_{j} p_{ij} \log_2 p_{ij} \]
+
+where \( p_{ij} \) is the probability that the \( i \)th value of \( X \) and the \( j \)th value of \( Y \) occur together.
+
+For discrete variables, mutual information is straightforward to compute and is maximized as:
+
+\[ \log_2(\min(n_X, n_Y)) \]
+
+where \( n_X \) and \( n_Y \) are the number of values of \( X \) and \( Y \), respectively.
+
+
 \end{document}
